@@ -80,14 +80,24 @@
 
     <header class="pt-24 pb-20">
         <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+            <!-- LEFT: text -->
             <div class="space-y-8">
                 <h1 class="text-5xl md:text-6xl font-semibold tracking-tighter leading-tight text-white space-mono-regular">
                     Compose music with just your <span class="text-primary">hum.</span>
                 </h1>
+
+                <!-- MOBILE IMAGE: directly after heading -->
+                <div class="block md:hidden pt-8">
+                    <div class="w-64 mx-auto relative p-4 rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <img src="img/example.png" alt="Example image" class="w-full h-auto">
+                    </div>
+                </div>
+
                 <p class="text-xl text-gray-400 font-light max-w-md leading-relaxed">
                     Don’t just sing it—play it. Bridge the gap between your voice and your DAW in real-time.
                 </p>
-                
+
                 <div class="flex gap-4 pt-4">
                     <a href="#concept" class="btn-primary px-8 py-3 rounded text-sm font-semibold tracking-wide">
                         GET STARTED
@@ -98,13 +108,17 @@
                 </div>
             </div>
 
-            <div class="relative h-80 w-full flex items-center justify-center">
-                <div class="w-80 relative p-6 flex flex-col justify-between transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                    <img src="img/example.png" alt="Example image"/>
+            <!-- RIGHT: desktop image -->
+            <div class="hidden md:flex relative w-full justify-center">
+                <div class="w-80 relative p-6 rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <img src="img/example.png" alt="Example image" class="w-full h-auto">
                 </div>
             </div>
+
         </div>
     </header>
+
+
 
     <div class="max-w-5xl mx-auto px-6">
         <hr class="border-white/10">
