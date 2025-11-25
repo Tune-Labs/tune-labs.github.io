@@ -19,6 +19,27 @@
             --font-sans: 'Inter', sans-serif;
             /*--font-sans: "Space Mono", monospace;*/
         }
+        @layer utilities {
+            .scrollbar-hide {
+                -ms-overflow-style: none; /* IE & Edge */
+                scrollbar-width: none;    /* Firefox */
+            }
+
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;            /* Chrome, Safari */
+            }
+
+            .banner-scroll {
+                cursor: grab;
+                scroll-behavior: smooth; /* affects wheel / keyboard, not drag */
+            }
+
+            .banner-scroll.dragging {
+                scroll-snap-type: none;  /* disable snap while dragging */
+                cursor: grabbing;
+            }
+        }
+
 
         .space-mono-regular {
             font-family: "Space Mono", monospace;
@@ -68,7 +89,7 @@
                 </p>
                 
                 <div class="flex gap-4 pt-4">
-                    <a href="#" class="btn-primary px-8 py-3 rounded text-sm font-semibold tracking-wide">
+                    <a href="#concept" class="btn-primary px-8 py-3 rounded text-sm font-semibold tracking-wide">
                         GET STARTED
                     </a>
                     <a href="#features" class="border border-white/20 px-8 py-3 rounded text-sm font-semibold hover:bg-white/5 transition-colors">
@@ -89,7 +110,8 @@
         <hr class="border-white/10">
     </div>
 
-    <section class="py-24">
+
+    <section class="py-24" id="concept">
         <div class="max-w-5xl mx-auto px-6">
             <div class="max-w-2xl">
                 <h3 class="text-primary text-sm font-bold uppercase tracking-widest mb-4 space-mono-regular">The Concept</h3>
@@ -100,7 +122,65 @@
         </div>
     </section>
 
-    <section id="features" class="py-10 pb-32">
+    <section class="py-24" id="features">
+        <div class="max-w-5xl mx-auto px-4 mb-4">
+
+            <h3 class="text-primary text-sm font-bold uppercase tracking-widest mb-6 space-mono-regular">
+                Features
+            </h3>
+
+            <!-- Horizontal scroll container -->
+            <div
+                    id="banner-scroll"
+                    class="banner-scroll flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4
+                   scrollbar-hide select-none"
+            >
+                <div class="min-w-[300px] md:min-w-[200px] snap-start">
+                    <img
+                            src="img/banner/compress/banner1.png"
+                            alt="Banner 1"
+                            class="rounded-xl w-full h-auto shadow-lg object-cover"
+                            draggable="false"
+                    >
+                </div>
+
+                <div class="min-w-[300px] md:min-w-[200px] snap-start">
+                    <img
+                            src="img/banner/compress/banner2.png"
+                            alt="Banner 2"
+                            class="rounded-xl w-full h-auto shadow-lg object-cover"
+                            draggable="false"
+                    >
+                </div>
+
+                <div class="min-w-[300px] md:min-w-[200px] snap-start">
+                    <img
+                            src="img/banner/compress/banner3.png"
+                            alt="Banner 3"
+                            class="rounded-xl w-full h-auto shadow-lg object-cover"
+                            draggable="false"
+                    >
+                </div>
+
+                <div class="min-w-[300px] md:min-w-[200px] snap-start">
+                    <img
+                            src="img/banner/compress/banner4.png"
+                            alt="Banner 4"
+                            class="rounded-xl w-full h-auto shadow-lg object-cover"
+                            draggable="false"
+                    >
+                </div>
+
+                <div class="min-w-[300px] md:min-w-[200px] snap-start">
+                    <img
+                            src="img/banner/compress/banner5.png"
+                            alt="Banner 5"
+                            class="rounded-xl w-full h-auto shadow-lg object-cover"
+                            draggable="false"
+                    >
+                </div>
+            </div>
+        </div>
         <div class="max-w-5xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-x-12 gap-y-16">
                 
@@ -206,5 +286,42 @@
         </div>
     </footer>
     <script src="src/js/newsletter.js" type="text/javascript"></script>
+    <script>
+        (function () {
+            const slider = document.getElementById('banner-scroll');
+            if (!slider) return;
+
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('active');
+                // where in the container we clicked
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('active');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 1.2; // adjust speed multiplier as you like
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        })();
+    </script>
+
 </body>
 </html>
