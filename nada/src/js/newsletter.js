@@ -41,7 +41,7 @@ form.addEventListener("submit", async (event) => {
 
     try {
         await subscribeToConvertKit(email);
-        messageEl.textContent = "Thanks! Check your inbox to confirm.";
+        messageEl.textContent = "Thanks! Stay tune with our product.";
         form.reset();
     } catch (err) {
         console.error(err);
