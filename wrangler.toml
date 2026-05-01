@@ -1,12 +1,13 @@
 name = "tunelab-id"
 compatibility_date = "2025-04-01"
+account_id = "988bf9e244a562e1afcb775e4bb4ebbc"
+workers_dev = true
+
+routes = [
+  { pattern = "tunelab.id", custom_domain = true },
+  { pattern = "www.tunelab.id", custom_domain = true },
+]
 
 [assets]
 directory = "./public"
 not_found_handling = "404-page"
-
-# Uncomment after adding tunelab.id as a Cloudflare zone and pointing DNS:
-# routes = [
-#   { pattern = "tunelab.id", custom_domain = true },
-#   { pattern = "www.tunelab.id", custom_domain = true },
-# ]
